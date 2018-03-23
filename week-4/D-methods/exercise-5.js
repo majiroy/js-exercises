@@ -9,35 +9,71 @@ only if the inserted amount is greater or equal than the price of the coffee!
 */
 
 var coffeeMachine = {
-    brand: "Super Coffee",
-    prices: {
-        cappuccino: 2.40,
-        blackCoffee: 1.50,
-        flatWhite: 3.00
-    },
-    insertedAmount: 0,
-    insertMoney: function(amount) {
-
-    },
-    getCoffee: function(coffee) {
-
+  brand: "Super Coffee",
+  prices: {
+    cappuccino: 2.4,
+    blackCoffee: 1.5,
+    flatWhite: 3.0
+  },
+  insertedAmount: 0,
+  insertMoney: function(amount) {
+    this.insertedAmount = amount;
+  },
+  getCoffee: function(coffee) {
+    if (this.insertedAmount != 0) {
+      if (coffee === "cappuccino" && this.insertedAmount >= 2.4) {
+        this.insertedAmount = this.insertedAmount - 2.4;
+        return "Please take your cappuccino";
+      } else if (coffee === "blackCoffee" && this.insertedAmount >= 1.5) {
+        this.insertedAmount = this.insertedAmount - 1.5;
+        return "Please take your blackCoffee";
+      } else if (coffee === "flatWhite" && this.insertedAmount >= 3) {
+        this.insertedAmount = this.insertedAmount - 3;
+        return "Please take your flatWhite";
+      }
+      return (
+        "Sorry you don't have enough money for a flatWhite. " +
+        "Your balance is: " +
+        this.insertedAmount
+      );
     }
+    return (
+      "Sorry you have to insert money first. " +
+      "Your balance is: " +
+      this.insertedAmount
+    );
+  }
 };
-
 
 /*
 DO NOT EDIT ANYTHING BELOW THIS LINE
 */
 
-coffeeMachine.insertMoney(2.40);
-console.log("Expected result: 'Please take your cappuccino'. Actual result: " + coffeeMachine.getCoffee('cappuccino'));
+coffeeMachine.insertMoney(2.4);
+console.log(
+  "Expected result: 'Please take your cappuccino'. Actual result: " +
+    coffeeMachine.getCoffee("cappuccino")
+);
 
-coffeeMachine.insertMoney(1.50);
-console.log("Expected result: 'Please take your blackCoffee'. Actual result: " + coffeeMachine.getCoffee('blackCoffee'));
+coffeeMachine.insertMoney(1.5);
+console.log(
+  "Expected result: 'Please take your blackCoffee'. Actual result: " +
+    coffeeMachine.getCoffee("blackCoffee")
+);
 
-coffeeMachine.insertMoney(4.00);
-console.log("Expected result: 'Please take your flatWhite'. Actual result: " + coffeeMachine.getCoffee('flatWhite'));
+coffeeMachine.insertMoney(4.0);
+console.log(
+  "Expected result: 'Please take your flatWhite'. Actual result: " +
+    coffeeMachine.getCoffee("flatWhite")
+);
 
-coffeeMachine.insertMoney(2.40);
-console.log("Expected result: 'Sorry you don't have enough money for a flatWhite'. Actual result: " + coffeeMachine.getCoffee('flatWhite'));
-
+coffeeMachine.insertMoney(2.4);
+console.log(
+  "Expected result: 'Sorry you don't have enough money for a flatWhite'. Actual result: " +
+    coffeeMachine.getCoffee("flatWhite")
+);
+coffeeMachine.insertMoney(0);
+console.log(
+  "Expected result: 'Sorry you don't have enough money for a flatWhite'. Actual result: " +
+    coffeeMachine.getCoffee("flatWhite")
+);
